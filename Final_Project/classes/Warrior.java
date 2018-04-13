@@ -1,0 +1,11 @@
+package classes;
+
+public class Warrior implements Class{
+
+	
+	@Override
+	public void levelUp() {
+		
+	}
+
+}
