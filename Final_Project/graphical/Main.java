@@ -4,12 +4,8 @@ package graphical;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +13,7 @@ import javax.swing.JPanel;
 public class Main extends JPanel {
 
 	// begins with file:/ so in order to allow IO to read file, must .substring(6)
-	public final String SOURCEFOLDER = Main.class.getClassLoader().getResource("").toString().substring(6);
+	public final String SOURCEFOLDER = Main.class.getClassLoader().getResource("").toString().substring(6) + "resources/";
 	
 	// methods for different shapes/images
 	
@@ -30,7 +26,7 @@ public class Main extends JPanel {
 		try {
 			bg = ImageIO.read(new File(bgResource));
 		// at 1280*720, 1260*665 is max w*h
-			
+
 			g.drawImage(bg, 0, 0, 1260, 665, null);
 			
 		} catch (IOException e) {	
