@@ -1,4 +1,4 @@
-package Final_Project.spell;
+package spell;
 
 public class Spell {
 	String name;
