@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 
 public class Main extends JPanel {
 
-	// begins with file:/ so in order to allow IO to read file, must .substring(6)
-	public final String SOURCEFOLDER = Main.class.getClassLoader().getResource("").toString().substring(6) + "resources/";
+	// begins with "file:/" so in order to allow IO to read file location, must .substring(6)
+	public final String SOURCEFOLDER = Main.class.getClassLoader().getResource("resources/").toString().substring(6); 
 	
 	// methods for different shapes/images
 	
