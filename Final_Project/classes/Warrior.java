@@ -1,4 +1,4 @@
-package Final_Project.classes;
+package classes;
 
 public class Warrior implements Class{
 
