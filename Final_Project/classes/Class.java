@@ -1,4 +1,4 @@
-package classes;
+package Final_Project.classes;
 
 import java.util.ArrayList;
 import spell.Spell;

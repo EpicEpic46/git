@@ -1,4 +1,4 @@
-package graphical;
+package Final_Project.graphical;
 
 
 import java.awt.Graphics;
