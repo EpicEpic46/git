@@ -61,6 +61,8 @@ public class Main extends JPanel implements KeyListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.add(new Main());
+		frame.addKeyListener(new Main());
+		
 		
 	}
 	
@@ -72,20 +74,19 @@ public class Main extends JPanel implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println(e.getKeyChar());
 		System.out.println(e.toString());
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		e.getKeyChar();
+		System.out.println(e.toString());
 		
 		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println(e.toString());
 		
 	}
 
