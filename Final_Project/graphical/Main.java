@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Main extends JPanel implements KeyListener{
+public class Main extends JPanel {
 
 	// begins with "file:/" so in order to allow IO to read file location, must .substring(6)
 	public final String SOURCEFOLDER = Main.class.getClassLoader().getResource("resources/").toString().substring(6); 
@@ -50,7 +50,6 @@ public class Main extends JPanel implements KeyListener{
 		Graphics2D g2 = (Graphics2D) g;
 		super.paintComponent(g);
 		drawSquares(g);
-		initializeKeyboard();
 		
 	}
 	
@@ -61,33 +60,10 @@ public class Main extends JPanel implements KeyListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.add(new Main());
-		frame.addKeyListener(new Main());
-		
-		
-	}
-	
-	private void initializeKeyboard() {
-		JTextField typingArea = new JTextField(1000);
-		typingArea.setVisible(true);
-		typingArea.addKeyListener(this);
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		System.out.println(e.toString());
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		System.out.println(e.toString());
+		frame.addKeyListener(new KeyboardListener());
 		
 		
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		System.out.println(e.toString());
-		
-	}
 
 }
