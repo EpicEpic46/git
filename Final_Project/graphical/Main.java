@@ -57,13 +57,13 @@ public class Main extends JPanel {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 1580, 845);
 		g.setColor(Color.WHITE);
-		for(int x = 0; x < 1580/35; x++) {
-			for (int y = 0; y < 845/35; y++) {
+		for(int x = 0; x < 1580/70; x++) {
+			for (int y = 0; y < 845/70; y++) {
 				
 				if (cellArray[x][y].color != Color.WHITE) {
 					g.setColor(cellArray[x][y].color);
 				}
-				g.fillRect(x*35 + 3, y*35 + 3, 32,32);
+				g.fillRect(x*70 + 20, y*70 + 6, 64,64);
 				g.setColor(Color.WHITE);
 			}
 		}
