@@ -17,22 +17,32 @@ public class Main extends JPanel {
 
 	// begins with "file:/" so in order to allow IO to read file location, must .substring(6)
 	public final String SOURCEFOLDER = Main.class.getClassLoader().getResource("resources/").toString().substring(6); 
-	public static Cell[][] cellArray = new Cell[45][24];
+	public static Cell[][] cellArray = new Cell[22][12];
 	public static Cell player;
 	public static boolean is_running = true;
+	public static final Color COLOR_BORDER = new Color(25,25,112);
 	
 	public Main(int i) {
 		repaint();
 	}
 	
 	public Main() {
-		for(int i = 0; i < 45; i++) {
-			for(int k = 0; k < 24; k++) {
+		for(int i = 0; i < 22; i++) {
+			for(int k = 0; k < 12; k++) {
 				cellArray[i][k] = new Cell();
+				cellArray[i][k].setPassable(true);
 			}
 		}
-		player = new Cell(Color.GREEN, 5, 5);
+		for (int i = 0; i < 22; i++) {
+			cellArray[i][0].setPassable(false);
+			cellArray[i][11].setPassable(false);	
+		}
+		for(int i = 0; i < 12; i++) {
+			cellArray[0][i].setPassable(false);
+			cellArray[21][i].setPassable(false);
+		}
 		
+		player = new Cell(Color.GREEN, 1, 1);
 		cellArray[player.x][player.y].setColor(Color.GREEN);
 	}
 	
@@ -55,6 +65,7 @@ public class Main extends JPanel {
 	
 	private void drawSquares(Graphics g) {
 		g.setColor(Color.BLACK);
+		
 		g.fillRect(0, 0, 1580, 845);
 		g.setColor(Color.WHITE);
 		for(int x = 0; x < 1580/70; x++) {
