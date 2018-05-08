@@ -46,6 +46,8 @@ public class Main extends JPanel {
 		cellArray[player.x][player.y].setColor(Color.GREEN);
 	}
 	
+	
+	
 	private void drawBG(Graphics g) {
 		Image bg;
 		String bgResource = SOURCEFOLDER + "Image.jpg";
