@@ -8,6 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,12 +24,14 @@ public class Main extends JPanel {
 	public static Cell player;
 	public static boolean is_running = true;
 	public static final Color COLOR_BORDER = new Color(25,25,112);
+	public static boolean endGame;
 	
 	public Main(int i) {
 		repaint();
 	}
 	
 	public Main() {
+		/*
 		for(int i = 0; i < 22; i++) {
 			for(int k = 0; k < 12; k++) {
 				cellArray[i][k] = new Cell();
@@ -41,9 +46,10 @@ public class Main extends JPanel {
 			cellArray[0][i].setPassable(false);
 			cellArray[21][i].setPassable(false);
 		}
-		
+		*/
 		player = new Cell(Color.GREEN, 1, 1);
 		cellArray[player.x][player.y].setColor(Color.GREEN);
+		
 	}
 	
 	
@@ -82,16 +88,44 @@ public class Main extends JPanel {
 		}
 	}
 	
+	public void endGame(Graphics g) {
+		is_running = false;
+		Image bg;
+		String bgResource = SOURCEFOLDER + "YouDied.jpg";
+		try {
+			bg = ImageIO.read(new File(bgResource));
+		// at 1280*720, 1260*665 is max w*h
+		// at 1600*900, 1580*845?? is w*h window restrictions constant??
+
+			g.drawImage(bg, 0, 0, 1580, 845, null);
+			System.out.println("Printed " + bg.toString() + " From " + bgResource);
+			
+			Thread deathThread = new Thread(new DeathTimer());
+			deathThread.start();
+			
+		} catch (IOException e) {	
+			e.printStackTrace();
+		}
+	}
 	
 	protected void paintComponent(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		super.paintComponent(g);
-		drawSquares(g);
+		if (endGame) endGame(g);
 		
+		//Graphics2D g2 = (Graphics2D) g;
+		//super.paintComponent(g);
+		if (!endGame) drawSquares(g);
 		
 	}
 	
 	public static void main(String[] args) {
+		SceneDesigner sd = new SceneDesigner();
+		try {
+			sd.readScene(1);
+			cellArray = sd.sceneArray;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		JFrame frame = new JFrame();
 		frame.setSize(1600,900);
 		frame.setTitle("Test Program");
@@ -103,8 +137,9 @@ public class Main extends JPanel {
 		while(is_running) {
 			frame.repaint();
 		}
+		
 		frame.dispose();
-		System.exit(0);
+		
 		
 		
 	}

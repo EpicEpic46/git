@@ -6,7 +6,8 @@ public class Cell {
 	Color color;
 	int x;
 	int y;
-	boolean passable;
+	boolean passable = true;
+	boolean killBlock;
 	
 	public Cell() {
 		this.color = Color.WHITE;
@@ -18,6 +19,13 @@ public class Cell {
 		this.y = y;
 	}
 	
+	public boolean isKillBlock() {
+		return this.killBlock;
+	}
+	
+	public void setKillBlock(boolean killBlock) {
+		this.killBlock = killBlock;
+	}
 	
 	public boolean isPassable() {
 		return passable;

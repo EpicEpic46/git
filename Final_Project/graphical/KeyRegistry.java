@@ -42,55 +42,69 @@ public class KeyRegistry {
 		int y = Main.player.getY();
 		
 		switch(direction) {
+		
 		case 0:
-			if (Main.cellArray[Main.player.x-1][Main.player.y].isPassable()) {
+			if (Main.cellArray[Main.player.x-1][Main.player.y].isPassable() && !Main.cellArray[Main.player.x-1][Main.player.y].isKillBlock()) {
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setX(x-1);
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.GREEN);
 				// if (is_ladder) {
 				new Main(0);
+			} else if(Main.cellArray[Main.player.x-1][Main.player.y].isKillBlock()) {
+				Main.endGame = true;
+				System.out.println("ERROR: InvalidMovement");
 			} else {
 				System.out.println("ERROR: InvalidMovement");
 				SoundPlayer player = new SoundPlayer();
-				player.playSound("bump.wav");
 			}
 			break;
 		case 1:
-			if (Main.cellArray[Main.player.x][Main.player.y-1].isPassable()) {
+			
+			if (Main.cellArray[Main.player.x][Main.player.y-1].isPassable() && !Main.cellArray[Main.player.x][Main.player.y-1].isKillBlock()) {
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setY(y-1);
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.GREEN);
 				new Main(0);
+			} else if(Main.cellArray[Main.player.x][Main.player.y-1].isKillBlock()) {
+				Main.endGame = true;
+				System.out.println("ERROR: InvalidMovement");
 			} else {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
 		case 2:
-			if (Main.cellArray[Main.player.x+1][Main.player.y].isPassable()) {
+			
+			if (Main.cellArray[Main.player.x+1][Main.player.y].isPassable() && !Main.cellArray[Main.player.x+1][Main.player.y].isKillBlock()) {
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setX(x+1);
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.GREEN);
 				new Main(0);
+			} else if(Main.cellArray[Main.player.x+1][Main.player.y].isKillBlock()) {
+				Main.endGame = true;
+				System.out.println("ERROR: InvalidMovement");
 			} else {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
 		case 3:
-			if (Main.cellArray[Main.player.x][Main.player.y+1].isPassable()) {
+			
+			if (Main.cellArray[Main.player.x][Main.player.y+1].isPassable() && !Main.cellArray[Main.player.x][Main.player.y+1].isKillBlock()) {
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setY(y+1);
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.GREEN);
 				new Main(0);
+			} else if(Main.cellArray[Main.player.x][Main.player.y+1].isKillBlock()) {
+				Main.endGame = true;
+				System.out.println("ERROR: InvalidMovement");
 			} else {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
 		}
-		new Main(0);
 		
 	}
 	
