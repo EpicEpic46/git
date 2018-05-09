@@ -134,7 +134,11 @@ public class Main extends JPanel {
 		frame.add(new Main());
 		frame.addKeyListener(new KeyboardListener());
 		
+		Thread ft = new Thread(new FlipTimer());
+		ft.start();
+		
 		while(is_running) {
+			
 			frame.repaint();
 		}
 		

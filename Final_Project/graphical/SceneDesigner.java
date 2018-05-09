@@ -2,6 +2,7 @@ package graphical;
 
 import java.awt.Color;
 import java.io.*;
+import java.util.ArrayList;
 
 public class SceneDesigner {
 	
@@ -9,6 +10,8 @@ public class SceneDesigner {
 	
 	String source_folder = this.getClass().getClassLoader().getResource("Resources/").toString().substring(6);
 	Cell[][] sceneArray = new Cell[22][12];
+	public static ArrayList<Cell> yellowCells = new ArrayList<Cell>();
+	
 	
 	public SceneDesigner() {
 	}
@@ -35,6 +38,7 @@ public class SceneDesigner {
 					break;
 				case '#':
 					sceneArray[i][counter] = new Cell(Color.YELLOW, i, counter);
+					yellowCells.add(sceneArray[i][counter]);
 					sceneArray[i][counter].setKillBlock(true);
 					break;
 				case '*':
