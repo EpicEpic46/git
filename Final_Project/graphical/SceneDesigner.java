@@ -31,6 +31,7 @@ public class SceneDesigner {
 					break;
 				case '^':
 					sceneArray[i][counter] = new Cell(PURPLE, i, counter);
+					sceneArray[i][counter].set_ladder(true);
 					break;
 				case 'x':
 					sceneArray[i][counter] = new Cell(Color.RED, i, counter);

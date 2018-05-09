@@ -53,10 +53,11 @@ public class KeyRegistry {
 				new Main(0);
 			} else if(Main.cellArray[Main.player.x-1][Main.player.y].isKillBlock()) {
 				Main.endGame = true;
+				System.out.println("ERROR: DEAD Movement");
+			} else if (Main.cellArray[Main.player.x-1][Main.player.y].is_ladder()) {
+				Main.changeScene(Main.currentScene++);
+			}else {
 				System.out.println("ERROR: InvalidMovement");
-			} else {
-				System.out.println("ERROR: InvalidMovement");
-				SoundPlayer player = new SoundPlayer();
 			}
 			break;
 		case 1:
@@ -69,8 +70,11 @@ public class KeyRegistry {
 				new Main(0);
 			} else if(Main.cellArray[Main.player.x][Main.player.y-1].isKillBlock()) {
 				Main.endGame = true;
-				System.out.println("ERROR: InvalidMovement");
-			} else {
+				System.out.println("ERROR: DEAD Movement");
+			} else if (Main.cellArray[Main.player.x][Main.player.y-1].is_ladder()) {
+				Main.changeScene(Main.currentScene++);
+			}
+			else {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
@@ -84,8 +88,10 @@ public class KeyRegistry {
 				new Main(0);
 			} else if(Main.cellArray[Main.player.x+1][Main.player.y].isKillBlock()) {
 				Main.endGame = true;
-				System.out.println("ERROR: InvalidMovement");
-			} else {
+				System.out.println("ERROR: DEAD Movement");
+			} else if (Main.cellArray[Main.player.x+1][Main.player.y].is_ladder()) {
+				Main.changeScene(Main.currentScene++);
+			}else {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
@@ -99,8 +105,11 @@ public class KeyRegistry {
 				new Main(0);
 			} else if(Main.cellArray[Main.player.x][Main.player.y+1].isKillBlock()) {
 				Main.endGame = true;
-				System.out.println("ERROR: InvalidMovement");
-			} else {
+				System.out.println("ERROR: DEAD Movement");
+			} else if (Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
+				Main.currentScene++;
+				Main.changeScene(Main.currentScene);
+			}else {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;

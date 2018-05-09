@@ -8,6 +8,7 @@ public class Cell {
 	int y;
 	boolean passable = true;
 	boolean killBlock;
+	boolean is_ladder;
 	
 	public Cell() {
 		this.color = Color.WHITE;
@@ -17,6 +18,14 @@ public class Cell {
 		this.color = color;
 		this.x = x;
 		this.y = y;
+	}
+	
+	public boolean is_ladder() {
+		return this.is_ladder;
+	}
+	
+	public void set_ladder(boolean is_ladder) {
+		this.is_ladder = is_ladder;
 	}
 	
 	public boolean isKillBlock() {

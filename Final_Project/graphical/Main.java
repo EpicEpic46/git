@@ -25,6 +25,7 @@ public class Main extends JPanel {
 	public static boolean is_running = true;
 	public static final Color COLOR_BORDER = new Color(25,25,112);
 	public static boolean endGame;
+	public static int currentScene = 1;
 	
 	public Main(int i) {
 		repaint();
@@ -52,6 +53,15 @@ public class Main extends JPanel {
 		
 	}
 	
+	public static void changeScene(int scene) {
+		SceneDesigner cs = new SceneDesigner();
+		try {
+			cs.readScene(scene);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	private void drawBG(Graphics g) {
@@ -138,7 +148,6 @@ public class Main extends JPanel {
 		ft.start();
 		
 		while(is_running) {
-			
 			frame.repaint();
 		}
 		
