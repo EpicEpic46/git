@@ -13,10 +13,10 @@ public class FlipTimer extends Thread {
 						Main.cellArray[c.x][c.y].setColor(Color.WHITE);
 					} else {
 						Main.cellArray[c.x][c.y].setKillBlock(true);
-						Main.cellArray[c.x][c.y].setColor(Color.ORANGE);
+						Main.cellArray[c.x][c.y].setColor(Color.RED);
 					}
 				}
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

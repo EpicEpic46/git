@@ -70,4 +70,8 @@ public class Cell {
 		this.color = color;
 	}
 	
+	public String toString() {
+		return "Cell[X:" + getX() + "-Y:" + getY() + "-Color:" + getColor() + "-KillBlock:" + isKillBlock() + "-Ladder:" + is_ladder();
+	}
+	
 }

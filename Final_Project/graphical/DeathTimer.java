@@ -1,10 +1,11 @@
 package graphical;
 
+import java.awt.Graphics;
 import java.util.TimerTask;
 
-public class DeathTimer extends TimerTask implements Runnable {
+public class DeathTimer extends Thread {
 
-	@Override
+	
 	public void run() {
 		try {
 			Thread.sleep(5000);

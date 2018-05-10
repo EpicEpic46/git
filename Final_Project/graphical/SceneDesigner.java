@@ -51,11 +51,14 @@ public class SceneDesigner {
 					break;
 				case '%':
 					sceneArray[i][counter] = new Cell(Color.YELLOW, i, counter);
+					yellowCells.add(sceneArray[i][counter]);
+					sceneArray[i][counter].setKillBlock(true);
 					break;
 				}
 			}
 		counter++;
 		}
+		Main.cellArray = sceneArray;
 		
 	}
 }

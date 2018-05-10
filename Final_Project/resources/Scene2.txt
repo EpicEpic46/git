@@ -1,0 +1,12 @@
+**********************
+*px#x#*#x#x#x#x*x#x#x*
+*x#*#x#x#*#x*x#x#x*x#*
+*#x#x#x#x#x#x#x#x#x#x*
+*x*x#*#x*x#x#*#x*x#*#*
+*#x#x#x#x#x#x#x#x#x#x*
+*x#x#x#x#x#x#x#x#x#x#*
+*#*#x*x#*#x#x*x#*#x*x*
+*x#x#x#x#x#x#x#x#x#x#*
+*#x*x#x#x*x#*#x#x#*#x*
+*x#x#x*x#x#x#x#*x#x#^*
+**********************

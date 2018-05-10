@@ -2,6 +2,7 @@ package graphical;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class KeyRegistry {
@@ -44,7 +45,7 @@ public class KeyRegistry {
 		switch(direction) {
 		
 		case 0:
-			if (Main.cellArray[Main.player.x-1][Main.player.y].isPassable() && !Main.cellArray[Main.player.x-1][Main.player.y].isKillBlock()) {
+			if (Main.cellArray[Main.player.x-1][Main.player.y].isPassable() && !Main.cellArray[Main.player.x-1][Main.player.y].isKillBlock() && !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setX(x-1);
@@ -55,14 +56,21 @@ public class KeyRegistry {
 				Main.endGame = true;
 				System.out.println("ERROR: DEAD Movement");
 			} else if (Main.cellArray[Main.player.x-1][Main.player.y].is_ladder()) {
-				Main.changeScene(Main.currentScene++);
+				System.out.println("REACHED LADDER");
+				try {
+					Main.currentScene++;
+					SceneDesigner sd = new SceneDesigner();
+					sd.readScene(Main.currentScene);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}else {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
 		case 1:
 			
-			if (Main.cellArray[Main.player.x][Main.player.y-1].isPassable() && !Main.cellArray[Main.player.x][Main.player.y-1].isKillBlock()) {
+			if (Main.cellArray[Main.player.x][Main.player.y-1].isPassable() && !Main.cellArray[Main.player.x][Main.player.y-1].isKillBlock() && !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setY(y-1);
@@ -72,7 +80,14 @@ public class KeyRegistry {
 				Main.endGame = true;
 				System.out.println("ERROR: DEAD Movement");
 			} else if (Main.cellArray[Main.player.x][Main.player.y-1].is_ladder()) {
-				Main.changeScene(Main.currentScene++);
+				System.out.println("REACHED LADDER");
+				try {
+					Main.currentScene++;
+					SceneDesigner sd = new SceneDesigner();
+					sd.readScene(Main.currentScene);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 			else {
 				System.out.println("ERROR: InvalidMovement");
@@ -80,7 +95,7 @@ public class KeyRegistry {
 			break;
 		case 2:
 			
-			if (Main.cellArray[Main.player.x+1][Main.player.y].isPassable() && !Main.cellArray[Main.player.x+1][Main.player.y].isKillBlock()) {
+			if (Main.cellArray[Main.player.x+1][Main.player.y].isPassable() && !Main.cellArray[Main.player.x+1][Main.player.y].isKillBlock() && !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setX(x+1);
@@ -90,14 +105,21 @@ public class KeyRegistry {
 				Main.endGame = true;
 				System.out.println("ERROR: DEAD Movement");
 			} else if (Main.cellArray[Main.player.x+1][Main.player.y].is_ladder()) {
-				Main.changeScene(Main.currentScene++);
+				System.out.println("REACHED LADDER");
+				try {
+					Main.currentScene++;
+					SceneDesigner sd = new SceneDesigner();
+					sd.readScene(Main.currentScene);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}else {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
 		case 3:
 			
-			if (Main.cellArray[Main.player.x][Main.player.y+1].isPassable() && !Main.cellArray[Main.player.x][Main.player.y+1].isKillBlock()) {
+			if (Main.cellArray[Main.player.x][Main.player.y+1].isPassable() && !Main.cellArray[Main.player.x][Main.player.y+1].isKillBlock() && !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setY(y+1);
@@ -107,8 +129,14 @@ public class KeyRegistry {
 				Main.endGame = true;
 				System.out.println("ERROR: DEAD Movement");
 			} else if (Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
-				Main.currentScene++;
-				Main.changeScene(Main.currentScene);
+				System.out.println("REACHED LADDER");
+				try {
+					Main.currentScene++;
+					SceneDesigner sd = new SceneDesigner();
+					sd.readScene(Main.currentScene);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}else {
 				System.out.println("ERROR: InvalidMovement");
 			}

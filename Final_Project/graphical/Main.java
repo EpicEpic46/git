@@ -53,16 +53,6 @@ public class Main extends JPanel {
 		
 	}
 	
-	public static void changeScene(int scene) {
-		SceneDesigner cs = new SceneDesigner();
-		try {
-			cs.readScene(scene);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	
 	private void drawBG(Graphics g) {
 		Image bg;
@@ -120,7 +110,8 @@ public class Main extends JPanel {
 	
 	protected void paintComponent(Graphics g) {
 		if (endGame) endGame(g);
-		
+
+		cellArray[player.x][player.y].setColor(Color.GREEN);
 		//Graphics2D g2 = (Graphics2D) g;
 		//super.paintComponent(g);
 		if (!endGame) drawSquares(g);
@@ -130,7 +121,7 @@ public class Main extends JPanel {
 	public static void main(String[] args) {
 		SceneDesigner sd = new SceneDesigner();
 		try {
-			sd.readScene(1);
+			sd.readScene(2);
 			cellArray = sd.sceneArray;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -148,6 +139,8 @@ public class Main extends JPanel {
 		ft.start();
 		
 		while(is_running) {
+			System.out.println(Main.currentScene);
+		//	System.out.println(cellArray[20][10]);
 			frame.repaint();
 		}
 		
