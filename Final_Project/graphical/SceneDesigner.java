@@ -10,13 +10,16 @@ public class SceneDesigner {
 	
 	String source_folder = this.getClass().getClassLoader().getResource("Resources/").toString().substring(6);
 	Cell[][] sceneArray = new Cell[22][12];
-	public static ArrayList<Cell> yellowCells = new ArrayList<Cell>();
+	public static ArrayList<Cell> yellowCells;
+	public static ArrayList<Cell> orangeCells;
 	
 	
 	public SceneDesigner() {
 	}
 	
 	public void readScene(int scene) throws IOException {
+		yellowCells = new ArrayList<Cell>();
+		orangeCells = new ArrayList<Cell>();
 		File sceneFile = new File(source_folder + "Scene" + scene + ".txt");
 		BufferedReader br = new BufferedReader(new FileReader(sceneFile));
 		String line;
@@ -38,7 +41,7 @@ public class SceneDesigner {
 					sceneArray[i][counter].setKillBlock(true);
 					break;
 				case '#':
-					sceneArray[i][counter] = new Cell(Color.YELLOW, i, counter);
+					sceneArray[i][counter] = new Cell(Color.RED, i, counter);
 					yellowCells.add(sceneArray[i][counter]);
 					sceneArray[i][counter].setKillBlock(true);
 					break;
@@ -50,10 +53,13 @@ public class SceneDesigner {
 					sceneArray[i][counter] = new Cell(Color.WHITE, i, counter);
 					break;
 				case '%':
-					sceneArray[i][counter] = new Cell(Color.YELLOW, i, counter);
-					yellowCells.add(sceneArray[i][counter]);
+					sceneArray[i][counter] = new Cell(Color.RED, i, counter);
+					orangeCells.add(sceneArray[i][counter]);
 					sceneArray[i][counter].setKillBlock(true);
 					break;
+				case '?':
+					sceneArray[i][counter] = new Cell(Color.CYAN, i, counter);
+					
 				}
 			}
 		counter++;

@@ -74,4 +74,10 @@ public class Cell {
 		return "Cell[X:" + getX() + "-Y:" + getY() + "-Color:" + getColor() + "-KillBlock:" + isKillBlock() + "-Ladder:" + is_ladder();
 	}
 	
+	public boolean posEquals(Cell other_cell) {
+		if (this.getX() == other_cell.getX() && this.getY() == other_cell.getY()) {
+			return true;
+		} else return false;
+	}
+	
 }

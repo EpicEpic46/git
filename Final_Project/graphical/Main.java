@@ -122,7 +122,6 @@ public class Main extends JPanel {
 		SceneDesigner sd = new SceneDesigner();
 		try {
 			sd.readScene(2);
-			cellArray = sd.sceneArray;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -137,6 +136,8 @@ public class Main extends JPanel {
 		
 		Thread ft = new Thread(new FlipTimer());
 		ft.start();
+		Thread at = new Thread(new AlternateTimer());
+		at.start();
 		
 		while(is_running) {
 			System.out.println(Main.currentScene);

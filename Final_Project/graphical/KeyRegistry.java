@@ -61,6 +61,8 @@ public class KeyRegistry {
 					Main.currentScene++;
 					SceneDesigner sd = new SceneDesigner();
 					sd.readScene(Main.currentScene);
+					Main.player.setX(1);
+					Main.player.setY(1);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -85,6 +87,8 @@ public class KeyRegistry {
 					Main.currentScene++;
 					SceneDesigner sd = new SceneDesigner();
 					sd.readScene(Main.currentScene);
+					Main.player.setX(1);
+					Main.player.setY(1);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -110,6 +114,8 @@ public class KeyRegistry {
 					Main.currentScene++;
 					SceneDesigner sd = new SceneDesigner();
 					sd.readScene(Main.currentScene);
+					Main.player.setX(1);
+					Main.player.setY(1);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -134,6 +140,8 @@ public class KeyRegistry {
 					Main.currentScene++;
 					SceneDesigner sd = new SceneDesigner();
 					sd.readScene(Main.currentScene);
+					Main.player.setX(1);
+					Main.player.setY(1);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
