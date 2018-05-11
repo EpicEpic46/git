@@ -27,6 +27,10 @@ public class Main extends JPanel {
 	public static boolean endGame;
 	public static int currentScene = 1;
 	
+	// TODO Make while loop to keep game going
+	// TODO Make intro screen
+	// TODO Make Cyan Tiles work
+	
 	public Main(int i) {
 		repaint();
 	}
@@ -121,7 +125,7 @@ public class Main extends JPanel {
 	public static void main(String[] args) {
 		SceneDesigner sd = new SceneDesigner();
 		try {
-			sd.readScene(2);
+			sd.readScene(3);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -140,11 +144,14 @@ public class Main extends JPanel {
 		at.start();
 		
 		while(is_running) {
-			System.out.println(Main.currentScene);
-		//	System.out.println(cellArray[20][10]);
 			frame.repaint();
 		}
-		
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		frame.dispose();
 		
 		
