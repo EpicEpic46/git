@@ -9,6 +9,7 @@ public class Cell {
 	boolean passable = true;
 	boolean killBlock;
 	boolean is_ladder;
+	boolean switchBlock;
 	
 	public Cell() {
 		this.color = Color.WHITE;
@@ -20,6 +21,14 @@ public class Cell {
 		this.y = y;
 	}
 	
+	public boolean isSwitchBlock() {
+		return switchBlock;
+	}
+
+	public void setSwitchBlock(boolean switchBlock) {
+		this.switchBlock = switchBlock;
+	}
+
 	public boolean is_ladder() {
 		return this.is_ladder;
 	}

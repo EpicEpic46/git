@@ -13,22 +13,24 @@ public class KeyRegistry {
 		System.out.println(e.getKeyCode());
 		keyCode = e.getKeyCode();
 		if (keyCode == 37) {
-			move(0);
+			move(-1* Main.inverseControls);
 		} else if (keyCode == 38) {
-			move(1);
+			move(-2* Main.inverseControls);
 		} else if (keyCode == 39) {
-			move(2);
+			move(1* Main.inverseControls);
 		} else if (keyCode == 40) {
-			move(3);
+			move(2 * Main.inverseControls);
 		} else if (keyCode == 27) {
-			Main.is_running = false;
+			System.exit(0);
+		} else if (keyCode == 112) { //f1
+			
 		} else {
 			System.out.println("Invalid Key");
 		}
 		
 	}
 	
-	// 0 = left, 1 = up, 2 = right, 3 = down
+	// -1 = left, -2 = up, 1 = right, 2 = down
 	
 	private void move(int direction) {
 		/*
@@ -44,14 +46,22 @@ public class KeyRegistry {
 		
 		switch(direction) {
 		
-		case 0:
-			if (Main.cellArray[Main.player.x-1][Main.player.y].isPassable() && !Main.cellArray[Main.player.x-1][Main.player.y].isKillBlock() && !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
+		case -1:
+			if (Main.cellArray[Main.player.x-1][Main.player.y].isPassable() 
+			&& !Main.cellArray[Main.player.x-1][Main.player.y].isKillBlock() 
+			&& !Main.cellArray[Main.player.x-1][Main.player.y].is_ladder() 
+			&& !Main.cellArray[Main.player.x-1][Main.player.y].isSwitchBlock()) 
+			{
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setX(x-1);
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.GREEN);
 				// if (is_ladder) {
 				new Main(0);
+			} else if (Main.cellArray[Main.player.x-1][Main.player.y].isSwitchBlock()) {
+				Main.inverseControls *= -1;
+				Main.player.setX(x-1);
+			
 			} else if(Main.cellArray[Main.player.x-1][Main.player.y].isKillBlock()) {
 				Main.endGame = true;
 				System.out.println("ERROR: DEAD Movement");
@@ -70,14 +80,22 @@ public class KeyRegistry {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
-		case 1:
 			
-			if (Main.cellArray[Main.player.x][Main.player.y-1].isPassable() && !Main.cellArray[Main.player.x][Main.player.y-1].isKillBlock() && !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
+		case -2:
+			if (Main.cellArray[Main.player.x][Main.player.y-1].isPassable() 
+			&& !Main.cellArray[Main.player.x][Main.player.y-1].isKillBlock() 
+			&& !Main.cellArray[Main.player.x][Main.player.y-1].is_ladder() 
+			&& !Main.cellArray[Main.player.x][Main.player.y-1].isSwitchBlock()) 
+			{
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setY(y-1);
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.GREEN);
 				new Main(0);
+			} else if (Main.cellArray[Main.player.x][Main.player.y-1].isSwitchBlock()) {
+				Main.inverseControls *= -1;
+				Main.player.setY(y-1);
+			
 			} else if(Main.cellArray[Main.player.x][Main.player.y-1].isKillBlock()) {
 				Main.endGame = true;
 				System.out.println("ERROR: DEAD Movement");
@@ -97,14 +115,22 @@ public class KeyRegistry {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
-		case 2:
 			
-			if (Main.cellArray[Main.player.x+1][Main.player.y].isPassable() && !Main.cellArray[Main.player.x+1][Main.player.y].isKillBlock() && !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
+		case 1:
+			if (Main.cellArray[Main.player.x+1][Main.player.y].isPassable() 
+			&& !Main.cellArray[Main.player.x+1][Main.player.y].isKillBlock() 
+			&& !Main.cellArray[Main.player.x+1][Main.player.y].is_ladder() 
+			&& !Main.cellArray[Main.player.x+1][Main.player.y].isSwitchBlock()) 
+			{
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setX(x+1);
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.GREEN);
 				new Main(0);
+			} else if (Main.cellArray[Main.player.x+1][Main.player.y].isSwitchBlock()) {
+				Main.inverseControls *= -1;
+				Main.player.setX(x+1);
+			
 			} else if(Main.cellArray[Main.player.x+1][Main.player.y].isKillBlock()) {
 				Main.endGame = true;
 				System.out.println("ERROR: DEAD Movement");
@@ -123,14 +149,22 @@ public class KeyRegistry {
 				System.out.println("ERROR: InvalidMovement");
 			}
 			break;
-		case 3:
 			
-			if (Main.cellArray[Main.player.x][Main.player.y+1].isPassable() && !Main.cellArray[Main.player.x][Main.player.y+1].isKillBlock() && !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder()) {
+		case 2:
+			if (Main.cellArray[Main.player.x][Main.player.y+1].isPassable() 
+			&& !Main.cellArray[Main.player.x][Main.player.y+1].isKillBlock() 
+			&& !Main.cellArray[Main.player.x][Main.player.y+1].is_ladder() 
+			&& !Main.cellArray[Main.player.x][Main.player.y+1].isSwitchBlock()) 
+			{
 				System.out.println("Valid Movement");
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.WHITE);
 				Main.player.setY(y+1);
 				Main.cellArray[Main.player.x][Main.player.y].setColor(Color.GREEN);
 				new Main(0);
+			} else if (Main.cellArray[Main.player.x][Main.player.y+1].isSwitchBlock()) {
+				Main.inverseControls *= -1;
+				Main.player.setY(y+1);
+			
 			} else if(Main.cellArray[Main.player.x][Main.player.y+1].isKillBlock()) {
 				Main.endGame = true;
 				System.out.println("ERROR: DEAD Movement");

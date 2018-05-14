@@ -12,6 +12,8 @@ public class SceneDesigner {
 	Cell[][] sceneArray = new Cell[22][12];
 	public static ArrayList<Cell> yellowCells;
 	public static ArrayList<Cell> orangeCells;
+	public static ArrayList<Cell> cyanCells;
+	public static ArrayList<Cell> whiteCells;
 	
 	
 	public SceneDesigner() {
@@ -20,6 +22,8 @@ public class SceneDesigner {
 	public void readScene(int scene) throws IOException {
 		yellowCells = new ArrayList<Cell>();
 		orangeCells = new ArrayList<Cell>();
+		cyanCells = new ArrayList<Cell>();
+		whiteCells = new ArrayList<Cell>();
 		File sceneFile = new File(source_folder + "Scene" + scene + ".txt");
 		BufferedReader br = new BufferedReader(new FileReader(sceneFile));
 		String line;
@@ -51,6 +55,7 @@ public class SceneDesigner {
 					break;
 				case '-':
 					sceneArray[i][counter] = new Cell(Color.WHITE, i, counter);
+					whiteCells.add(sceneArray[i][counter]);
 					break;
 				case '%':
 					sceneArray[i][counter] = new Cell(Color.RED, i, counter);
@@ -59,7 +64,8 @@ public class SceneDesigner {
 					break;
 				case '?':
 					sceneArray[i][counter] = new Cell(Color.CYAN, i, counter);
-					
+					sceneArray[i][counter].setSwitchBlock(true);
+					cyanCells.add(sceneArray[i][counter]);
 				}
 			}
 		counter++;

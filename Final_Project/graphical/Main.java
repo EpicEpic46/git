@@ -12,49 +12,36 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Main extends JPanel {
+public class Main extends JComponent {
 
 	// begins with "file:/" so in order to allow IO to read file location, must .substring(6)
-	public final String SOURCEFOLDER = Main.class.getClassLoader().getResource("resources/").toString().substring(6); 
+	public final static String SOURCEFOLDER = Main.class.getClassLoader().getResource("resources/").toString().substring(6); 
 	public static Cell[][] cellArray = new Cell[22][12];
 	public static Cell player;
 	public static boolean is_running = true;
 	public static final Color COLOR_BORDER = new Color(25,25,112);
-	public static boolean endGame;
+	public static boolean endGame = false;
 	public static int currentScene = 1;
+	public static int inverseControls = 1;
+	static boolean threadsRunning = false;
+	static boolean showIntro = true;
 	
-	// TODO Make while loop to keep game going
+	// TODO *FINISHED* Make while loop to keep game going
 	// TODO Make intro screen
-	// TODO Make Cyan Tiles work
+	// TODO *FINISHED* Make Cyan Tiles work
 	
 	public Main(int i) {
 		repaint();
 	}
 	
 	public Main() {
-		/*
-		for(int i = 0; i < 22; i++) {
-			for(int k = 0; k < 12; k++) {
-				cellArray[i][k] = new Cell();
-				cellArray[i][k].setPassable(true);
-			}
-		}
-		for (int i = 0; i < 22; i++) {
-			cellArray[i][0].setPassable(false);
-			cellArray[i][11].setPassable(false);	
-		}
-		for(int i = 0; i < 12; i++) {
-			cellArray[0][i].setPassable(false);
-			cellArray[21][i].setPassable(false);
-		}
-		*/
 		player = new Cell(Color.GREEN, 1, 1);
-		cellArray[player.x][player.y].setColor(Color.GREEN);
-		
+		cellArray[player.x][player.y].setColor(Color.GREEN);	
 	}
 	
 	
@@ -73,6 +60,19 @@ public class Main extends JPanel {
 		} catch (IOException e) {	
 			e.printStackTrace();
 		}
+	}
+	
+	private static void drawIntroScreen(Graphics g) {
+		Image intro;
+		String introResource = SOURCEFOLDER + "TitleScreen.jpg";
+		try {
+			intro = ImageIO.read(new File(introResource));
+			g.drawImage(intro, 0, 0, 1580, 845, null);
+			System.out.println(introResource);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	private void drawSquares(Graphics g) {
@@ -99,13 +99,12 @@ public class Main extends JPanel {
 		try {
 			bg = ImageIO.read(new File(bgResource));
 		// at 1280*720, 1260*665 is max w*h
-		// at 1600*900, 1580*845?? is w*h window restrictions constant??
+		// at 1600*900, 1580*845?? w*h window restrictions are constant
 
 			g.drawImage(bg, 0, 0, 1580, 845, null);
 			System.out.println("Printed " + bg.toString() + " From " + bgResource);
 			
-			Thread deathThread = new Thread(new DeathTimer());
-			deathThread.start();
+
 			
 		} catch (IOException e) {	
 			e.printStackTrace();
@@ -113,50 +112,67 @@ public class Main extends JPanel {
 	}
 	
 	protected void paintComponent(Graphics g) {
+		
+		if (showIntro) {
+			drawIntroScreen(g);
+			showIntro = false;
+		}
 		if (endGame) endGame(g);
-
 		cellArray[player.x][player.y].setColor(Color.GREEN);
-		//Graphics2D g2 = (Graphics2D) g;
-		//super.paintComponent(g);
 		if (!endGame) drawSquares(g);
 		
 	}
 	
 	public static void main(String[] args) {
-		SceneDesigner sd = new SceneDesigner();
-		try {
-			sd.readScene(3);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
-		JFrame frame = new JFrame();
-		frame.setSize(1600,900);
-		frame.setTitle("Test Program");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.add(new Main());
-		frame.addKeyListener(new KeyboardListener());
+		while (true) {
+			
+			endGame = false;
+			is_running = true;
+			System.out.println(endGame);
+			System.out.println(threadsRunning);
+			
+			SceneDesigner sd = new SceneDesigner();
+			try {
+				sd.readScene(currentScene);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		
-		Thread ft = new Thread(new FlipTimer());
-		ft.start();
-		Thread at = new Thread(new AlternateTimer());
-		at.start();
+			JFrame frame = new JFrame();
+			frame.setSize(1600,900);
+			frame.setTitle("Test Program");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
+			frame.add(new Main());
+			frame.addKeyListener(new KeyboardListener());
+			
 		
-		while(is_running) {
-			frame.repaint();
-		}
-		try {
-			Thread.sleep(1500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		frame.dispose();
-		
-		
-		
+			Thread ft = new Thread(new FlipTimer());
+			ft.start();
+			Thread at = new Thread(new AlternateTimer());
+			at.start();
+			Thread st = new Thread(new SwitchThread());
+			st.start();
+			Thread wt = new Thread(new WhiteCellThread());
+			wt.start();
+			
+			
+			
+			while(is_running) {
+				frame.repaint();
+			}
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			ft.stop();
+			at.stop();
+			st.stop();
+			wt.stop();
+			frame.dispose();	
+			showIntro = true;
+		}	
 	}
-
-
 }
