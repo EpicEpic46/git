@@ -9,27 +9,29 @@ public class SceneDesigner {
 	final Color PURPLE = new Color(128,0,128);
 	
 	String source_folder = this.getClass().getClassLoader().getResource("Resources/").toString().substring(6);
+	
 	Cell[][] sceneArray = new Cell[22][12];
 	public static ArrayList<Cell> yellowCells;
 	public static ArrayList<Cell> orangeCells;
 	public static ArrayList<Cell> cyanCells;
 	public static ArrayList<Cell> whiteCells;
-	
-	
-	public SceneDesigner() {
-	}
-	
+	// read scenes from text and load them into Main.cellArray[][]
 	public void readScene(int scene) throws IOException {
+		// yellow cells = alternating reds #1
 		yellowCells = new ArrayList<Cell>();
+		// orange cells = alternating reds #2
 		orangeCells = new ArrayList<Cell>();
+		// cyan cells = inverse controls
 		cyanCells = new ArrayList<Cell>();
+		// white cells = safe areas
 		whiteCells = new ArrayList<Cell>();
+		
 		File sceneFile = new File(source_folder + "Scene" + scene + ".txt");
+		// cannot br.close() at end of method because readScene gets read again
 		BufferedReader br = new BufferedReader(new FileReader(sceneFile));
 		String line;
 		int counter = 0;
-		while(br.ready()) {
-			
+		while(br.ready()) {			
 			line = br.readLine();
 			for(int i = 0; i < line.length(); i++) {
 				switch(line.charAt(i)) {

@@ -3,13 +3,13 @@ package graphical;
 import java.awt.Color;
 
 public class Cell {
-	Color color;
-	int x;
-	int y;
-	boolean passable = true;
-	boolean killBlock;
-	boolean is_ladder;
-	boolean switchBlock;
+	private Color color;
+	private int x;
+	private int y;
+	private boolean passable = true;
+	private boolean killBlock;
+	private boolean is_ladder;
+	private boolean switchBlock;
 	
 	public Cell() {
 		this.color = Color.WHITE;

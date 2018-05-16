@@ -3,9 +3,10 @@ package graphical;
 import java.awt.Color;
 
 public class AlternateTimer extends Thread {
-
+	
 	public void run() {
 		try {
+			// Initial sleep to offset from flipTimer
 			Thread.sleep(750);
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
@@ -14,9 +15,9 @@ public class AlternateTimer extends Thread {
 			try {
 				
 				for(Cell c : SceneDesigner.orangeCells) {
-					if (Main.cellArray[c.x][c.y].killBlock) {
-						Main.cellArray[c.x][c.y].setKillBlock(false);
-						Main.cellArray[c.x][c.y].setColor(Color.WHITE);
+					if (Main.cellArray[c.getX()][c.getY()].isKillBlock()) {
+						Main.cellArray[c.getX()][c.getY()].setKillBlock(false);
+						Main.cellArray[c.getX()][c.getY()].setColor(Color.WHITE);
 					} 
 				}
 				Thread.sleep(1000);
@@ -25,8 +26,8 @@ public class AlternateTimer extends Thread {
 						if (c.posEquals(Main.player)) {
 							Main.endGame = true;
 						}
-						Main.cellArray[c.x][c.y].setKillBlock(true);
-						Main.cellArray[c.x][c.y].setColor(Color.RED);
+						Main.cellArray[c.getX()][c.getY()].setKillBlock(true);
+						Main.cellArray[c.getX()][c.getY()].setColor(Color.RED);
 					}
 				}
 				Thread.sleep(500);

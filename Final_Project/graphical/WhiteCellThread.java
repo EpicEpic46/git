@@ -5,6 +5,8 @@ import java.awt.Color;
 public class WhiteCellThread extends Thread {
 	public void run() {
 		while (true) {
+			// Resets tiles that the player goes over to white
+			// made because of issues created by the cyan cells
 			for (Cell cell : SceneDesigner.whiteCells) {
 				if (Main.player.getX() == cell.getX() && Main.player.getY() == cell.getY()) {
 					cell.setColor(Color.GREEN);
