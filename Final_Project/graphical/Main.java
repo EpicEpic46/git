@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 
 
 /**@author Gordon Reis & Carl Tavernise
- * @version 1.1.0b
+ * @version 1.1.0c
  * Last Updated: May 15th, 2018 
  * 
  * This is the Main Method to be run in order to run the game.
