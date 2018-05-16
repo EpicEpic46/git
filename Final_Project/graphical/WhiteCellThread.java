@@ -12,6 +12,27 @@ public class WhiteCellThread extends Thread {
 					cell.setColor(Color.GREEN);
 				} else cell.setColor(Color.WHITE);
 			}
+			// yellow/orange cells are here to prevent the tiles
+			// from staying green when the player crosses over them
+			for (Cell cell : SceneDesigner.yellowCells) {
+				if (Main.player.getX() == cell.getX() && Main.player.getY() == cell.getY()) {
+					cell.setColor(Color.GREEN);
+				} else if(cell.isKillBlock()) {
+					cell.setColor(Color.RED);
+				} else {
+					cell.setColor(Color.WHITE);
+				}
+				
+			}
+			for (Cell cell : SceneDesigner.orangeCells) {
+				if (Main.player.getX() == cell.getX() && Main.player.getY() == cell.getY()) {
+					cell.setColor(Color.GREEN);
+				} else if(cell.isKillBlock()) {
+					cell.setColor(Color.RED);
+				} else {
+					cell.setColor(Color.WHITE);
+				}
+			}
 		}
 	}
 }

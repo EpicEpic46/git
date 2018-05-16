@@ -65,10 +65,14 @@ public class KeyRegistry {
 				System.out.println("REACHED LADDER");
 				try {
 					Main.currentScene++;
-					SceneDesigner sd = new SceneDesigner();
-					sd.readScene(Main.currentScene);
-					Main.player.setX(1);
-					Main.player.setY(1);
+					if (Main.currentScene > 5) {
+						Main.endGame = true;
+					} else {
+						SceneDesigner sd = new SceneDesigner();
+						sd.readScene(Main.currentScene);
+						Main.player.setX(1);
+						Main.player.setY(1);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -99,10 +103,14 @@ public class KeyRegistry {
 				System.out.println("REACHED LADDER");
 				try {
 					Main.currentScene++;
-					SceneDesigner sd = new SceneDesigner();
-					sd.readScene(Main.currentScene);
-					Main.player.setX(1);
-					Main.player.setY(1);
+					if (Main.currentScene > 5) {
+						Main.endGame = true;
+					} else {
+						SceneDesigner sd = new SceneDesigner();
+						sd.readScene(Main.currentScene);
+						Main.player.setX(1);
+						Main.player.setY(1);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -134,10 +142,14 @@ public class KeyRegistry {
 				System.out.println("REACHED LADDER");
 				try {
 					Main.currentScene++;
-					SceneDesigner sd = new SceneDesigner();
-					sd.readScene(Main.currentScene);
-					Main.player.setX(1);
-					Main.player.setY(1);
+					if (Main.currentScene > 5) {
+						Main.endGame = true;
+					} else {
+						SceneDesigner sd = new SceneDesigner();
+						sd.readScene(Main.currentScene);
+						Main.player.setX(1);
+						Main.player.setY(1);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -166,13 +178,16 @@ public class KeyRegistry {
 				System.out.println("ERROR: DEAD Movement");
 			} else if (Main.cellArray[x][y+1].is_ladder()) {
 				System.out.println("REACHED LADDER");
-				System.out.println("REACHED LADDER");
 				try {
 					Main.currentScene++;
-					SceneDesigner sd = new SceneDesigner();
-					sd.readScene(Main.currentScene);
-					Main.player.setX(1);
-					Main.player.setY(1);
+					if (Main.currentScene > 5) {
+						Main.endGame = true;
+					} else {
+						SceneDesigner sd = new SceneDesigner();
+						sd.readScene(Main.currentScene);
+						Main.player.setX(1);
+						Main.player.setY(1);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

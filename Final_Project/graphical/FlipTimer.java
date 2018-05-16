@@ -16,6 +16,7 @@ public class FlipTimer extends Thread {
 				}
 				// One second off
 				Thread.sleep(1000);
+				
 				for(Cell c : SceneDesigner.yellowCells) {
 					if (!Main.cellArray[c.getX()][c.getY()].isKillBlock()) {
 						if (c.posEquals(Main.player)) {

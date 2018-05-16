@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 
 
 /**@author Gordon Reis & Carl Tavernise
- * @version 1.1.0a
+ * @version 1.1.0b
  * Last Updated: May 15th, 2018 
  * 
  * This is the Main Method to be run in order to run the game.
@@ -32,7 +32,7 @@ public class Main extends JComponent {
 	// boolean to end the game whether win or not
 	public static boolean endGame = false;
 	// Current scene, change initialization here for beginning scene
-	public static int currentScene = 3;
+	public static int currentScene = 1;
 	// Changes based on state of cyan tiles
 	public static int inverseControls = 1;
 	// runs once to show intro combined with a Thread.sleep for a 5000ms pause
@@ -106,8 +106,7 @@ public class Main extends JComponent {
 			}
 		}
 	}
-	
-	/* extraneous code
+	/*
 	public void winGame(Graphics g) {
 		outer_loop = false;
 		is_running = false;
@@ -124,13 +123,12 @@ public class Main extends JComponent {
 		}
 	}
 	*/
-	
 	// outlines procedures when game is over whether win or loss
 	public void endGame(Graphics g) {
 		is_running = false;
 		Image bg;
 		String bgResource;
-		if (Main.currentScene == 4) {
+		if (Main.currentScene == 6) {
 			bgResource = SOURCEFOLDER + "YouWin.jpg";
 		} else {
 			bgResource = SOURCEFOLDER + "YouDied.jpg";
@@ -159,6 +157,10 @@ public class Main extends JComponent {
 			// if intro already shown, then do the following
 		} else {
 			if (endGame) endGame(g);
+			// prevents beginning square from staying green
+			if (!cellArray[player.getX()][player.getY()].posEquals(new Cell(Color.WHITE,1,1))) {
+				cellArray[1][1].setColor(Color.WHITE);
+			}
 			cellArray[player.getX()][player.getY()].setColor(Color.GREEN);
 			if (!endGame) drawSquares(g);
 		}
@@ -174,7 +176,9 @@ public class Main extends JComponent {
 			is_running = true;			
 			SceneDesigner sd = new SceneDesigner();
 			try {
-				sd.readScene(currentScene);
+				if (currentScene <= 5) { //Done to prevent error after game closes
+					sd.readScene(currentScene);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -197,7 +201,11 @@ public class Main extends JComponent {
 			wt.start();
 			
 			try {
+				if(currentScene == 6) {
+					System.exit(0);
+				}
 				Thread.sleep(5000);
+				
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
