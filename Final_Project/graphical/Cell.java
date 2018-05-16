@@ -2,6 +2,9 @@ package graphical;
 
 import java.awt.Color;
 
+/**
+ * This class defines the cells that make up Main.cellArray[][]
+ */
 public class Cell {
 	private Color color;
 	private int x;

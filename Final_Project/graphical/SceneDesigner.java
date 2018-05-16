@@ -3,7 +3,9 @@ package graphical;
 import java.awt.Color;
 import java.io.*;
 import java.util.ArrayList;
-
+/**
+ * This class reads in the scenes from text files and converts it into Main.cellArray[][]
+ */
 public class SceneDesigner {
 	
 	final Color PURPLE = new Color(128,0,128);

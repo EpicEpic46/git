@@ -5,6 +5,10 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class registers keypresses and maps them to movement
+ * also turns movement into changes in the Main.cellArray[][]
+ */
 public class KeyRegistry {
 	
 	// Integer value defining keypress picked up by KeyboardListener

@@ -2,6 +2,10 @@ package graphical;
 
 import java.awt.Color;
 
+/**
+ * This class sets the timer for the offset red timer tile
+ */
+
 public class AlternateTimer extends Thread {
 	
 	public void run() {

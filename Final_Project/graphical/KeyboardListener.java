@@ -2,7 +2,9 @@ package graphical;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+/**
+ * This class uses KeyListener to create KeyRegistry objects
+ */
 public class KeyboardListener implements KeyListener {
 
 

@@ -2,6 +2,9 @@ package graphical;
 
 import java.awt.Color;
 
+/**
+ * This class sets the UI coloring correctly for movement over cyan tiles
+ */
 public class SwitchThread extends Thread{
 	
 	public void run() {

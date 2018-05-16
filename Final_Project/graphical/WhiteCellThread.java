@@ -1,7 +1,9 @@
 package graphical;
 
 import java.awt.Color;
-
+/**
+ * This class sets some cells back to white after player moves over them
+ */
 public class WhiteCellThread extends Thread {
 	public void run() {
 		while (true) {

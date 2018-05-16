@@ -2,6 +2,9 @@ package graphical;
 
 import java.awt.Color;
 
+/**
+ * This class sets the timer for the original red timer tile
+ */
 public class FlipTimer extends Thread {
 
 	public void run() {
